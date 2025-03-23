@@ -1,13 +1,13 @@
-// TODO: can be moved to build source and conventions?
+// TODO: Can be moved to buildSrc and conventions?
 plugins {
-    id 'java'
+    id("java")
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
 }
 
 allprojects {
-    group = 'com.isi'
-    version = '1.0.0-SNAPSHOT'
+    group = "com.isi.pyszkomat"
+    version = "1.0.0-SNAPSHOT"
 
     repositories {
         mavenCentral()
@@ -15,12 +15,14 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
+    apply(plugin = "java")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
 
-    sourceCompatibility = JavaVersion.VERSION_24
-    targetCompatibility = JavaVersion.VERSION_24
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
@@ -32,7 +34,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            // TODO: extract version to some property
+            // TODO: Extract version to some property
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:2024.0.1")
         }
     }
