@@ -25,11 +25,18 @@ subprojects {
     }
 
     dependencies {
+        compileOnly("org.projectlombok:lombok:1.18.36")
+        annotationProcessor("org.projectlombok:lombok:1.18.36")
+
+
         implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.springframework.cloud:spring-cloud-config-server")
-        implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
+//        implementation("org.springframework.cloud:spring-cloud-config-server")
+//        implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+        testCompileOnly("org.projectlombok:lombok:1.18.36")
+        testAnnotationProcessor("org.projectlombok:lombok:1.18.36")
     }
 
     dependencyManagement {

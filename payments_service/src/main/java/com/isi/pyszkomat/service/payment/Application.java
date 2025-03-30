@@ -16,19 +16,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
 	public static void main(String[] args) throws StripeException {
-		var stripeSecretToken = "fill_in";
-		StripeClient client = new StripeClient(stripeSecretToken);
-		PaymentIntentCreateParams paymentIntentParam = PaymentIntentCreateParams.builder()
-				.setAmount(300L) // = 3.00 PLN
-				.setCurrency("pln")
-				.setPaymentMethod("pm_card_visa")
-				.addPaymentMethodType("card")
-				.build();
-		var paymentIntent = client.paymentIntents().create(paymentIntentParam);
+//		var stripeSecretToken = "fill_in";
+//		StripeClient client = new StripeClient(stripeSecretToken);
+//		PaymentIntentCreateParams paymentIntentParam = PaymentIntentCreateParams.builder()
+//				.setAmount(300L) // = 3.00 PLN
+//				.setCurrency("pln")
+//				.setPaymentMethod("pm_card_visa")
+//				.addPaymentMethodType("card")
+//				.build();
+//		var paymentIntent = client.paymentIntents().create(paymentIntentParam);
+//
+//		client.paymentIntents().confirm(paymentIntent.getId());
 
-		client.paymentIntents().confirm(paymentIntent.getId());
-
-		// TODO: setup Spring Cloud components (like Eureka)
-//		SpringApplication.run(Application.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
