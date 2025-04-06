@@ -11,4 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class ServicesUriConfig {
     private String payment;
+    private String order;
+    private String delivery;
 }

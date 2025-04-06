@@ -1,0 +1,17 @@
+services:
+    api-gateway:
+        ports:
+            - "8080:8080"
+        image: pyszkomat/service/api-gateway:latest
+        environment:
+            - PAYMENT_SERVICE_URL=http://payment-service:8080
+            - DELIVERY_SERVICE_URL=http://delivery-service:8080
+            - ORDER_SERVICE_URL=http://order-service:8080
+    order-service:
+        image: pyszkomat/service/order:latest
+        environment:
+            - PORT=8080
+    delivery-service:
+        image: pyszkomat/service/delivery:latest
+        environment:
+            - PORT=8080
