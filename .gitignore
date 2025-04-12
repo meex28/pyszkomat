@@ -1,1 +1,2 @@
 /.gradle/
+/infrastructure/localstack_data/
