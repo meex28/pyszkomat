@@ -1,8 +1,0 @@
-version: '3'
-
-tasks:
-  docker:build:all:
-    cmds:
-      - docker build -f delivery_service/Dockerfile -t pyszkomat/service/delivery .
-      - docker build -f order_service/Dockerfile -t pyszkomat/service/order .
-      - docker build -f api_gateway_service/Dockerfile -t pyszkomat/service/api-gateway .

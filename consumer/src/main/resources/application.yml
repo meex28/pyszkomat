@@ -1,0 +1,12 @@
+server:
+  port: ${SERVER_PORT:8082}
+
+sqs:
+  queue:
+    url: ${SQS_QUEUE_URL:http://localhost:4566/000000000000/test-queue}
+
+aws:
+  region: ${AWS_REGION:us-east-1}
+  access-key: ${AWS_ACCESS_KEY_ID:test}
+  secret-key: ${AWS_SECRET_ACCESS_KEY:test}
+  endpoint: ${AWS_ENDPOINT:http://localstack:4566}

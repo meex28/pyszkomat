@@ -1,17 +1,67 @@
 services:
-    api-gateway:
-        ports:
-            - "8080:8080"
-        image: pyszkomat/service/api-gateway:latest
-        environment:
-            - PAYMENT_SERVICE_URL=http://payment-service:8080
-            - DELIVERY_SERVICE_URL=http://delivery-service:8080
-            - ORDER_SERVICE_URL=http://order-service:8080
-    order-service:
-        image: pyszkomat/service/order:latest
-        environment:
-            - PORT=8080
-    delivery-service:
-        image: pyszkomat/service/delivery:latest
-        environment:
-            - PORT=8080
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs
+      - EDGE_PORT=4566
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - ./init-aws:/etc/localstack/init/ready.d
+      - localstack-data:/var/lib/localstack
+    networks:
+      - app-net
+
+  producer:
+    build: ./producer
+    container_name: producer
+    environment:
+      - SQS_QUEUE_URL=http://localstack:4566/000000000000/pyszkomat-queue
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_ENDPOINT=http://localstack:4566
+    depends_on:
+      - localstack
+    ports:
+      - "8081:8081"
+    networks:
+      - app-net
+
+  consumer:
+    build: ./consumer
+    container_name: consumer
+    environment:
+      - SQS_QUEUE_URL=http://localstack:4566/000000000000/pyszkomat-queue
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_ENDPOINT=http://localstack:4566
+    depends_on:
+      - localstack
+    ports:
+      - "8082:8082"
+    networks:
+      - app-net
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - PRODUCER_URI=http://producer:8081
+      - CONSUMER_URI=http://consumer:8082
+    depends_on:
+      - producer
+      - consumer
+    networks:
+      - app-net
+
+networks:
+  app-net:
+
+volumes:
+  localstack-data:
