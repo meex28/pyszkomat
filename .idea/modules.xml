@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api_gateway_service/pyszkomat.api_gateway_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api_gateway_service/pyszkomat.api_gateway_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/pyszkomat.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/pyszkomat.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/delivery_service/pyszkomat.delivery_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/delivery_service/pyszkomat.delivery_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/order_service/pyszkomat.order_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/order_service/pyszkomat.order_service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/payments_service/pyszkomat.payments_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/payments_service/pyszkomat.payments_service.main.iml" />
     </modules>
   </component>
